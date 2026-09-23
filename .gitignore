@@ -1,0 +1,55 @@
+# Dependencies
+node_modules/
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# Production/Build
+dist/
+dist-ssr/
+build/
+*.local
+
+# Vite cache
+.vite/
+.vite-cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+.windows
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Miscellaneous
+.temp/
+temp/
+*.tmp
+.cache/
+
+# Question banks folder (archived/reference files)
+question_banks/
