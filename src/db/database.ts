@@ -15,10 +15,10 @@ export class ExamDatabase extends Dexie {
   constructor() {
     super('CCDVExamDB');
     this.version(1).stores({
-      examAttempts: 'id, userId, submittedAt',
-      currentExam: 'id',
-      userSettings: 'key',
-      questionBank: 'version',
+      examAttempts: '++id, userId, submittedAt',
+      currentExam: '++id',
+      userSettings: '++id, key',
+      questionBank: '++version',
     });
   }
 }
@@ -26,12 +26,36 @@ export class ExamDatabase extends Dexie {
 export const db = new ExamDatabase();
 
 export async function saveUserName(name: string): Promise<void> {
-  await db.userSettings.put({ key: 'userName', value: name });
+  try {
+    console.log('saveUserName called with:', name);
+    // Save to both IndexedDB and localStorage for redundancy
+    await db.userSettings.put({ key: 'userName', value: name });
+    localStorage.setItem('userName', name);
+    console.log('User name saved successfully:', name);
+    console.log('localStorage check:', localStorage.getItem('userName'));
+  } catch (error) {
+    console.error('Error saving user name:', error);
+    localStorage.setItem('userName', name);
+    console.log('Saved to localStorage only:', name);
+  }
 }
 
 export async function getUserName(): Promise<string> {
-  const setting = await db.userSettings.where('key').equals('userName').first();
-  return setting?.value || '';
+  try {
+    // Try to get from IndexedDB first
+    const setting = await db.userSettings.where('key').equals('userName').first();
+    console.log('Retrieved from IndexedDB:', setting?.value);
+    if (setting?.value) {
+      return setting.value;
+    }
+  } catch (error) {
+    console.error('Error retrieving user name from IndexedDB:', error);
+  }
+
+  // Fallback to localStorage
+  const localName = localStorage.getItem('userName') || '';
+  console.log('Retrieved from localStorage:', localName);
+  return localName;
 }
 
 export async function saveCurrentExam(exam: CurrentExam): Promise<void> {

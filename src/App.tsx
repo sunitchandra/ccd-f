@@ -19,7 +19,9 @@ export default function App() {
 
   useEffect(() => {
     const init = async () => {
+      console.log('App.tsx useEffect: Loading user data...');
       const name = await getUserName();
+      console.log('App.tsx: Retrieved name from database:', name);
       setUserName(name);
 
       const unfinished = await getCurrentExam();
@@ -55,6 +57,9 @@ export default function App() {
     setAppState('dashboard');
     setCurrentExam(null);
     setCompletedAttempt(null);
+    // Reload user name in case it was updated
+    const name = await getUserName();
+    setUserName(name);
   };
 
   return (
@@ -66,6 +71,7 @@ export default function App() {
           onStartExam={() => setAppState('start')}
           onResumeExam={handleResumeExam}
           onViewLibrary={() => setAppState('library')}
+          onUserNameChange={setUserName}
         />
       )}
 
