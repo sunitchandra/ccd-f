@@ -26,7 +26,9 @@ export default function ResultsPage({ attempt, onBackToDashboard }: ResultsPageP
     q => !attempt.userAnswers.find(a => a.questionId === q.id && a.selectedIndices.length > 0)
   ).length;
 
-  const incorrectCount = Math.max(0, 30 - attempt.userAnswers.filter(a => a.selectedIndices.length > 0).length - Math.round(attempt.score));
+  const answeredCount = attempt.userAnswers.filter(a => a.selectedIndices.length > 0).length;
+  const correctCount = Math.round(attempt.score);
+  const incorrectCount = answeredCount - correctCount;
 
   return (
     <div className="results-page">

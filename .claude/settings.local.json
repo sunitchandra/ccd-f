@@ -13,7 +13,9 @@
       "Bash(node merge_questions.js)",
       "Bash(node merge_questions.mjs)",
       "Bash(node extract_all_questions.mjs)",
-      "Bash(cd *)"
+      "Bash(cd *)",
+      "Bash(grep -i \"\\\\.\\(tsx\\\\|css\\)$\")",
+      "Bash(curl -s http://localhost:5173)"
     ]
   }
 }

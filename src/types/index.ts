@@ -5,6 +5,7 @@ export interface Question {
   correctAnswers: number[];
   type: 'single' | 'multiple';
   explanation: string;
+  domain?: string;
 }
 
 export interface RandomizedQuestion extends Question {

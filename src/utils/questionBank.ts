@@ -9,6 +9,7 @@ export function getQuestionBank(): Question[] {
     correctAnswers: q.correctAnswers,
     type: q.type as 'single' | 'multiple',
     explanation: q.explanation,
+    ...(q.domain && { domain: q.domain }),
   }));
 }
 
