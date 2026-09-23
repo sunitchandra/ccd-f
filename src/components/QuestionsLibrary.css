@@ -193,7 +193,7 @@
   justify-content: center;
   background-color: #0066cc;
   color: white;
-  border-radius: 50%;
+  border-radius: 0%;
   font-weight: 700;
   font-size: 14px;
 }
@@ -389,7 +389,7 @@
   }
 
   .question-number {
-    width: 28px;
+    width: 120px;
     height: 28px;
     font-size: 12px;
   }
