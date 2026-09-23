@@ -30,10 +30,16 @@ export default function QuestionsLibrary({ onBackToDashboard }: QuestionsLibrary
     });
   }, [questions, filterDomain, filterType, searchTerm]);
 
-  const typeCount = {
-    single: questions.filter(q => q.type === 'single').length,
-    multiple: questions.filter(q => q.type === 'multiple').length,
-  };
+  const typeCount = useMemo(() => {
+    const domainFiltered = filterDomain === 'all'
+      ? questions
+      : questions.filter(q => (q as any).domain === filterDomain);
+
+    return {
+      single: domainFiltered.filter(q => q.type === 'single').length,
+      multiple: domainFiltered.filter(q => q.type === 'multiple').length,
+    };
+  }, [questions, filterDomain]);
 
   const toggleExpanded = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
