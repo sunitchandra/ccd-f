@@ -12,6 +12,7 @@ interface DashboardProps {
   onStartExam: () => void;
   onResumeExam: () => void;
   onViewLibrary: () => void;
+  onUserNameChange?: (name: string) => void;
 }
 
 export default function Dashboard({
@@ -20,10 +21,18 @@ export default function Dashboard({
   onStartExam,
   onResumeExam,
   onViewLibrary,
+  onUserNameChange,
 }: DashboardProps) {
   const [userName, setUserName] = useState(initialUserName);
   const [editingName, setEditingName] = useState(false);
   const [tempName, setTempName] = useState(initialUserName);
+
+  // Update local state when prop changes
+  useEffect(() => {
+    console.log('Dashboard: userName prop changed to:', initialUserName);
+    setUserName(initialUserName);
+    setTempName(initialUserName);
+  }, [initialUserName]);
   const [stats, setStats] = useState<DashboardStats>({
     userName: initialUserName,
     totalAttempts: 0,
@@ -85,10 +94,17 @@ export default function Dashboard({
   }, [userName, userId]);
 
   const handleSaveName = async () => {
+    console.log('handleSaveName called with tempName:', tempName);
     if (tempName.trim()) {
+      console.log('Saving name:', tempName);
       setUserName(tempName);
       await saveUserName(tempName);
       setEditingName(false);
+      // Notify parent component of name change
+      onUserNameChange?.(tempName);
+      console.log('Name save completed');
+    } else {
+      console.log('Name is empty, not saving');
     }
   };
 
