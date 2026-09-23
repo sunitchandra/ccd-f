@@ -15,7 +15,11 @@
       "Bash(node extract_all_questions.mjs)",
       "Bash(cd *)",
       "Bash(grep -i \"\\\\.\\(tsx\\\\|css\\)$\")",
-      "Bash(curl -s http://localhost:5173)"
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(git rm *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git checkout *)"
     ]
   }
 }
