@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Documents\\\\Claude\\\\Claude Certified Developer\\\\code_folder\" -Filter \"*.pdf\")",
+      "Bash(Select-Object Name, FullPath)",
+      "Bash(powershell -Command ' *)",
+      "Bash(node -e ' *)",
+      "Bash(npm run *)",
+      "Bash(node \"C:\\\\Documents\\\\Claude\\\\Claude Certified Developer\\\\code_folder\\\\extract_all_questions_complete.js\")",
+      "Bash(xargs grep -l \"QUESTIONS_1\\\\|QUESTIONS_2\")",
+      "Bash(node ./generate_questions_json.js)",
+      "Bash(awk '{print $9, \"\\(\" $5 \"\\)\"}')",
+      "Bash(node merge_questions.js)",
+      "Bash(node merge_questions.mjs)",
+      "Bash(node extract_all_questions.mjs)",
+      "Bash(cd *)"
+    ]
+  }
+}

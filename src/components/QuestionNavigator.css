@@ -1,0 +1,132 @@
+.question-navigator {
+  padding: 15px;
+}
+
+.navigator-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee;
+}
+
+.navigator-header h4 {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+}
+
+.navigator-count {
+  font-size: 12px;
+  background-color: #0066cc;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.navigator-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.navigator-button {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 2px solid #ddd;
+  background-color: white;
+  color: #333;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.navigator-button:hover {
+  border-color: #0066cc;
+  background-color: #f0f8ff;
+}
+
+.navigator-button.answered {
+  background-color: #e3f2fd;
+  border-color: #0066cc;
+  color: #0066cc;
+}
+
+.navigator-button.answered:hover {
+  background-color: #bbdefb;
+}
+
+.navigator-button.current {
+  background-color: #0066cc;
+  border-color: #0066cc;
+  color: white;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
+}
+
+.navigator-button.current:hover {
+  background-color: #0052a3;
+}
+
+.navigator-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+  font-size: 11px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-square {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ddd;
+  border-radius: 3px;
+  background-color: white;
+}
+
+.legend-square.answered {
+  background-color: #e3f2fd;
+  border-color: #0066cc;
+}
+
+.legend-square.current {
+  background-color: #0066cc;
+  border-color: #0066cc;
+}
+
+@media (max-width: 1024px) {
+  .navigator-grid {
+    grid-template-columns: repeat(10, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .question-navigator {
+    padding: 10px;
+  }
+
+  .navigator-grid {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 6px;
+  }
+
+  .navigator-button {
+    font-size: 10px;
+  }
+}

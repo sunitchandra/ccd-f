@@ -1,0 +1,172 @@
+.exam-start {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.exam-start-header {
+  background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.exam-start-header h1 {
+  font-size: 32px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.exam-start-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.exam-info-card,
+.exam-notes-card,
+.exam-scoring-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 25px;
+}
+
+.exam-info-card h2 {
+  font-size: 24px;
+  color: #0066cc;
+  margin-bottom: 20px;
+}
+
+.exam-notes-card h3,
+.exam-scoring-card h3 {
+  font-size: 18px;
+  color: #0066cc;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #0066cc;
+  padding-bottom: 10px;
+}
+
+.info-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.detail-label {
+  font-weight: 500;
+  color: #666;
+  font-size: 14px;
+}
+
+.detail-value {
+  font-weight: 700;
+  color: #0066cc;
+  font-size: 16px;
+}
+
+.exam-notes-card ul {
+  list-style: none;
+}
+
+.exam-notes-card li {
+  margin-bottom: 15px;
+  padding-left: 25px;
+  position: relative;
+  color: #555;
+  line-height: 1.6;
+}
+
+.exam-notes-card li:before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #28a745;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.scoring-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.scoring-rule {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 6px;
+  border-left: 3px solid #0066cc;
+}
+
+.scoring-rule h4 {
+  color: #0066cc;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.scoring-rule p {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.scoring-rule p:last-child {
+  margin-bottom: 0;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.btn-large {
+  padding: 15px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  min-width: 200px;
+}
+
+@media (max-width: 768px) {
+  .exam-start-header {
+    padding: 30px 15px;
+  }
+
+  .exam-start-header h1 {
+    font-size: 24px;
+  }
+
+  .exam-info-card,
+  .exam-notes-card,
+  .exam-scoring-card {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .info-details {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .btn-large {
+    width: 100%;
+  }
+}

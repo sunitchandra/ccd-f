@@ -1,0 +1,68 @@
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  min-width: 120px;
+}
+
+.timer-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.timer-display {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0066cc;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+
+.timer.low {
+  background-color: #fff3cd;
+}
+
+.timer.low .timer-display {
+  color: #ff9800;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.timer.critical {
+  background-color: #f8d7da;
+}
+
+.timer.critical .timer-display {
+  color: #dc3545;
+  animation: pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 768px) {
+  .timer {
+    min-width: 100px;
+    padding: 8px 15px;
+  }
+
+  .timer-display {
+    font-size: 20px;
+  }
+
+  .timer-label {
+    font-size: 10px;
+  }
+}

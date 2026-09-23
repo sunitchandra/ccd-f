@@ -1,0 +1,109 @@
+.attempt-history {
+  overflow-x: auto;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.history-table thead {
+  background-color: #f0f0f0;
+  border-bottom: 2px solid #ddd;
+}
+
+.history-table th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.history-table tbody tr {
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s ease;
+}
+
+.history-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.history-table td {
+  padding: 12px;
+  color: #555;
+}
+
+.attempt-number {
+  font-weight: 600;
+  color: #0066cc;
+}
+
+.date {
+  font-size: 13px;
+  color: #666;
+}
+
+.score {
+  font-weight: 600;
+  color: #0066cc;
+}
+
+.percentage {
+  font-weight: 600;
+  color: #333;
+}
+
+.result {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.result.passed {
+  color: #155724;
+  background-color: #d4edda;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.result.failed {
+  color: #721c24;
+  background-color: #f8d7da;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.time {
+  font-family: 'Courier New', monospace;
+  color: #666;
+}
+
+.history-table tbody tr.passed {
+  background-color: rgba(212, 237, 218, 0.3);
+}
+
+.history-table tbody tr.failed {
+  background-color: rgba(248, 215, 218, 0.3);
+}
+
+@media (max-width: 768px) {
+  .history-table {
+    font-size: 12px;
+  }
+
+  .history-table th,
+  .history-table td {
+    padding: 8px;
+  }
+
+  .history-table th {
+    font-size: 11px;
+  }
+}
