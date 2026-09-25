@@ -19,6 +19,11 @@ export default function ExamScreen({ exam: initialExam, onComplete, onCancel }: 
   const [paused, setPaused] = useState(initialExam.paused);
   const [showPauseScreen, setShowPauseScreen] = useState(paused);
   const [autoSubmitWarning, setAutoSubmitWarning] = useState(false);
+  const [struckOutOptions, setStruckOutOptions] = useState<Map<string, Set<number>>>(
+    initialExam.struckOutOptions
+      ? new Map(Object.entries(initialExam.struckOutOptions).map(([key, indices]) => [key, new Set(indices)]))
+      : new Map()
+  );
 
   const generateUserId = () => {
     let id = localStorage.getItem('userId');
@@ -46,6 +51,9 @@ export default function ExamScreen({ exam: initialExam, onComplete, onCancel }: 
       userAnswers,
       paused: true,
       pausedAt: Date.now(),
+      struckOutOptions: Object.fromEntries(
+        Array.from(struckOutOptions.entries()).map(([key, set]) => [key, Array.from(set)])
+      ),
     };
     await saveCurrentExam(exam);
   };
@@ -76,6 +84,57 @@ export default function ExamScreen({ exam: initialExam, onComplete, onCancel }: 
     const exam: CurrentExam = {
       ...initialExam,
       userAnswers: newAnswers,
+      struckOutOptions: Object.fromEntries(
+        Array.from(struckOutOptions.entries()).map(([key, set]) => [key, Array.from(set)])
+      ),
+    };
+    saveCurrentExam(exam);
+  };
+
+  const handleToggleStrikeOut = (optionIndex: number) => {
+    const newMap = new Map(struckOutOptions);
+    const optionSet = newMap.get(currentQuestion.id) || new Set<number>();
+    let newAnswers = [...userAnswers];
+
+    if (optionSet.has(optionIndex)) {
+      // Removing strike-out
+      optionSet.delete(optionIndex);
+    } else {
+      // Adding strike-out - remove the selection if it was selected
+      const existingAnswerIndex = newAnswers.findIndex(a => a.questionId === currentQuestion.id);
+      if (existingAnswerIndex >= 0) {
+        const selectedIndices = newAnswers[existingAnswerIndex].selectedIndices.filter(idx => idx !== optionIndex);
+        if (selectedIndices.length === 0) {
+          // Remove the answer entirely if no options selected
+          newAnswers.splice(existingAnswerIndex, 1);
+        } else {
+          // Update with remaining selected indices
+          newAnswers[existingAnswerIndex] = {
+            questionId: currentQuestion.id,
+            selectedIndices: selectedIndices.sort((a, b) => a - b),
+          };
+        }
+      }
+
+      optionSet.add(optionIndex);
+    }
+
+    if (optionSet.size === 0) {
+      newMap.delete(currentQuestion.id);
+    } else {
+      newMap.set(currentQuestion.id, optionSet);
+    }
+
+    setStruckOutOptions(newMap);
+    setUserAnswers(newAnswers);
+
+    // Save the updated state
+    const exam: CurrentExam = {
+      ...initialExam,
+      userAnswers: newAnswers,
+      struckOutOptions: Object.fromEntries(
+        Array.from(newMap.entries()).map(([key, set]) => [key, Array.from(set)])
+      ),
     };
     saveCurrentExam(exam);
   };
@@ -163,6 +222,8 @@ export default function ExamScreen({ exam: initialExam, onComplete, onCancel }: 
                   }
                 }
                 onAnswerChange={handleAnswerChange}
+                struckOutIndices={Array.from(struckOutOptions.get(currentQuestion.id) || [])}
+                onToggleStrikeOut={handleToggleStrikeOut}
               />
 
               <div className="navigation-buttons">
