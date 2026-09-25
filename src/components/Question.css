@@ -111,6 +111,56 @@
   background-color: #e3f2fd;
 }
 
+.strike-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 14px;
+  color: #999;
+  opacity: 0;
+  margin-left: auto;
+  transition: opacity 0.2s ease, color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.option-label:hover .strike-button {
+  opacity: 1;
+}
+
+.option-label.struck-out .strike-button {
+  opacity: 1;
+  color: #dc3545;
+}
+
+.option-label.struck-out {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.option-label.struck-out:hover {
+  border-color: #ccc;
+  background-color: #f0f0f0;
+}
+
+.option-label.struck-out .option-text {
+  text-decoration: line-through;
+  opacity: 0.4;
+  color: #999;
+}
+
+.option-label.struck-out .option-input:disabled {
+  cursor: not-allowed;
+}
+
+.option-label.struck-out .radio-indicator,
+.option-label.struck-out .checkbox-indicator {
+  background-color: #e0e0e0;
+  border-color: #bbb;
+  opacity: 0.5;
+}
+
 @media (max-width: 768px) {
   .question-header {
     flex-direction: column;

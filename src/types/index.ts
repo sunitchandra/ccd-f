@@ -10,6 +10,7 @@ export interface Question {
 
 export interface RandomizedQuestion extends Question {
   randomizedIndices: number[];
+  struckOutIndices?: number[];
 }
 
 export interface UserAnswer {
@@ -48,4 +49,5 @@ export interface CurrentExam {
   userAnswers: UserAnswer[];
   paused: boolean;
   pausedAt?: number;
+  struckOutOptions?: Record<string, number[]>;
 }
